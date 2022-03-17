@@ -43,11 +43,6 @@ export class UserRegistrationService {
       catchError(this.handleError)
     );
   }
-  // Non-typed response extraction
-  private extractResponseData(res: Response): any {
-    const body = res;
-    return body || {};
-  }
 
   // Get a Single Movie
   getSingleMovie(): Observable<any> {
@@ -181,7 +176,7 @@ export class UserRegistrationService {
     );
   }
 
-  // Extract data response 
+  // Non-typed response extraction
   private extractResponseData(data: any | Object): any {
     return data || {};
   }
