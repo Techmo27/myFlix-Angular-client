@@ -22,6 +22,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { MatIconModule } from '@angular/material/icon';
 import { GenreComponent } from './genre/genre.component';
+import { DirectorComponent } from './director/director.component';
 
 
 const appRoutes: Routes = [
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
     MovieCardComponent,
     WelcomePageComponent,
     GenreComponent,
+    DirectorComponent,
     // UserRegistrationFormComponent
   ],
   imports: [

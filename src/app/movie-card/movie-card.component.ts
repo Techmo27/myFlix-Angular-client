@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { GenreComponent } from '../genre/genre.component';
+import { DirectorComponent } from '../director/director.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -31,7 +32,18 @@ export class MovieCardComponent {
     this.dialog.open(GenreComponent, {
       data: {
         name: name,
-        nescription: description,
+        description: description,
+      },
+      width: '450px'
+    });
+  }
+
+  openDirector(name: string, bio: string, birth: string): void {
+    this.dialog.open(DirectorComponent, {
+      data: {
+        name: name,
+        bio: bio,
+        birth: birth
       },
       width: '450px'
     });
