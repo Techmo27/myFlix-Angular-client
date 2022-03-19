@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { GenreComponent } from '../genre/genre.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-movie-card',
@@ -30,8 +30,8 @@ export class MovieCardComponent {
   openGenre(name: string, description: string): void {
     this.dialog.open(GenreComponent, {
       data: {
-        Name: name,
-        Description: description,
+        name: name,
+        nescription: description,
       },
       width: '450px'
     });
