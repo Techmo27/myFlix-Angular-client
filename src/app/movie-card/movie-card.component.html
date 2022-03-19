@@ -15,7 +15,8 @@
         style='margin-right: 10px;'>
         Director
       </button>
-      <button mat-button color="accent">
+      <button mat-button color="accent" (click)='openSynopsis(movie.Synopsis.Title, movie.Synopsis.Description)'
+        style='margin-right: 10px;'>
         Synopsis
       </button>
       <mat-icon>favorite_border</mat-icon>

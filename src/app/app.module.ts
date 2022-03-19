@@ -23,6 +23,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { GenreComponent } from './genre/genre.component';
 import { DirectorComponent } from './director/director.component';
+import { SynopsisComponent } from './synopsis/synopsis.component';
 
 
 const appRoutes: Routes = [
@@ -40,6 +41,7 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     GenreComponent,
     DirectorComponent,
+    SynopsisComponent,
     // UserRegistrationFormComponent
   ],
   imports: [
