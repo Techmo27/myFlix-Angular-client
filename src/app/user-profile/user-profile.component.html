@@ -1,4 +1,4 @@
-<h1 style='margin-left: 10px'>Your Profile</h1>
+<h1 style='margin-left: 10px'>Hi, {{ user.Username }}</h1>
 <div style='display: flex; margin: 10px;'>
   <mat-card>
     <mat-card-header>
@@ -13,6 +13,34 @@
       <button mat-raised-button color='accent' (click)='openEditProfile()' style='margin-right: 10px;'>
         Edit Profile
       </button>
+      <button mat-raised-button color='basic' (click)='deleteProfile()' style='margin-right: 10px;'>
+        Delete Profile
+      </button>
     </mat-card-content>
+  </mat-card>
+</div>
+
+<div style="display: flex;">
+  <mat-card *ngFor="let favorite of favorites;" style="flex: 1 1 auto;">
+    <mat-card-header>
+      <mat-card-title>{{favorite.Title}}</mat-card-title>
+      <mat-card-subtitle>Directed by: {{favorite.Director.Name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img src={{favorite.ImagePath}} alt={{favorite.Title}} />
+    <mat-card-actions>
+      <button mat-stroked-button color="accent" (click)='openGenre(favorite.Genre.Name, favorite.Genre.Description)'
+        style='margin-right: 10px;'>
+        Genre
+      </button>
+      <button mat-stroked-button color="accent"
+        (click)='openDirector(favorite.Director.Name, favorite.Director.Bio, favorite.Director.Birth)'
+        style='margin-right: 10px;'>
+        Director
+      </button>
+      <button mat-stroked-button color="accent" (click)='openSynopsis(favorite.Title, favorite.Description)'
+        style='margin-right: 10px;'>
+        Synopsis
+      </button>
+    </mat-card-actions>
   </mat-card>
 </div>

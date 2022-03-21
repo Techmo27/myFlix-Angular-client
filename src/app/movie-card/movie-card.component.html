@@ -20,7 +20,7 @@
         style='margin-right: 10px;'>
         Synopsis
       </button>
-      <button mat-icon-button color="accent">
+      <button mat-icon-button color="accent" (click)='addFavorites(movie.movieID, movie.Title)'>
         <mat-icon>favorite</mat-icon>
       </button>
     </mat-card-actions>

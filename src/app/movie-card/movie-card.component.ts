@@ -4,6 +4,7 @@ import { GenreComponent } from '../genre/genre.component';
 import { DirectorComponent } from '../director/director.component';
 import { SynopsisComponent } from '../synopsis/synopsis.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -12,14 +13,21 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent {
+
   movies: any[] = [];
+  user: any = localStorage.getItem('user');
+  favorites: any[] = [];
+
+
   constructor(
     public fetchApiData: UserRegistrationService,
     public dialog: MatDialog,
+    public snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
     this.getMovies();
+
   }
 
   getMovies(): void {
@@ -58,6 +66,15 @@ export class MovieCardComponent {
         description: description
       },
       width: '450px'
+    });
+  }
+
+  addFavorites(movieID: string, title: string): void {
+    this.fetchApiData.addFavoriteMovies(movieID).subscribe((result: any) => {
+      this.snackBar.open('The movie was successfully added to your favorites.', 'OK', {
+        duration: 2000,
+      });
+      this.ngOnInit();
     });
   }
 }
