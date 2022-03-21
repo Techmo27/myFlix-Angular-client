@@ -1,0 +1,20 @@
+<p>
+  <mat-toolbar color='basic'>
+    <span style='margin-right: 10px; text-decoration: none;'>myFlix</span>
+    <mat-list-item>
+      <a routerLink='profile' (click)='routeProfile() ' style='margin-right: 10px; text-decoration: none;'>
+        Profile
+      </a>
+    </mat-list-item>
+    <mat-list-item>
+      <a routerLink='movies' (click)='routeMovies() ' style='margin-right: 10px; text-decoration: none;'>
+        Movies
+      </a>
+    </mat-list-item>
+    <mat-list-item>
+      <a (click)='logout()' routerLink='logout' style='margin-right: 10px; text-decoration: none;'>
+        Logout
+      </a>
+    </mat-list-item>
+  </mat-toolbar>
+</p>
