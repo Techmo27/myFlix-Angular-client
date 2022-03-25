@@ -57,6 +57,7 @@ export class UserProfileComponent implements OnInit {
     this.getMovies();
   }
 
+
   getUser(): void {
     this.fetchApiData.getUserProfile().subscribe((result: any) => {
       this.user = result;
