@@ -8,6 +8,33 @@ import { GenreComponent } from '../genre/genre.component';
 import { DirectorComponent } from '../director/director.component';
 import { SynopsisComponent } from '../synopsis/synopsis.component';
 
+interface Movies {
+  Title: string;
+  _id: string;
+  ImagePath: string;
+  Genre: Genre[];
+  Director: Director[]
+}
+
+interface Genre {
+  Description: string;
+  Name: string;
+}
+
+interface Director {
+  Birth: string;
+  Name: string;
+  Bio: string;
+}
+
+interface User {
+  Username: string;
+  Password: string;
+  Email: string;
+  Birthday: string;
+  FavouriteMovies: string[]
+}
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -15,8 +42,9 @@ import { SynopsisComponent } from '../synopsis/synopsis.component';
 })
 export class UserProfileComponent implements OnInit {
 
-  user: any = localStorage.getItem('user');
+  user: undefined | User = undefined
   favorites: any[] = [];
+  movies: Movies[] = []
 
   constructor(
     public fetchApiData: UserRegistrationService,
@@ -26,15 +54,30 @@ export class UserProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getUser();
+    this.getMovies();
   }
 
   getUser(): void {
     this.fetchApiData.getUserProfile().subscribe((result: any) => {
       this.user = result;
-      this.favorites = result.Favorites;
-      console.log(this.user)
+      this.favorites = this.getFavorites(this.movies, result.FavoriteMovies);
       return (this.user, this.favorites);
+    });
+  }
+
+  getFavorites(movies: Movies[], userFavoriteMovies: string[]) {
+    if (movies.length === 0 || userFavoriteMovies.length === 0) {
+      return []
+    }
+
+    return movies.filter(movie => userFavoriteMovies.findIndex(m => m === movie._id) !== -1)
+  }
+
+  getMovies() {
+    this.fetchApiData.getAllMovies().subscribe((resp: Movies[]) => {
+      this.movies = resp
+      this.getUser();
+      return this.movies
     });
   }
 
@@ -58,7 +101,6 @@ export class UserProfileComponent implements OnInit {
 
   deleteFavorites(movieID: string, title: string): void {
     this.fetchApiData.deleteFavoriteMovies(movieID).subscribe((result: any) => {
-      console.log(result);
       this.snackBar.open(
         'Movie successfully deleted.',
         'OK',

@@ -1,23 +1,26 @@
-<h1 style='margin-left: 10px'>Hi, {{ user.Username }}</h1>
-<div style='display: flex; margin: 10px;'>
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Your Details</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <h3><b>Name: </b>{{ user.Username }}</h3>
-      <h3><b>Username: </b>{{ user.Password }}</h3>
-      <h3><b>Email: </b>{{ user.Email }}</h3>
-      <h3><b>Birthday: </b>{{ user.Birthday | date : 'mediumDate' }}</h3>
-      <br>
-      <button mat-raised-button color='accent' (click)='openEditProfile()' style='margin-right: 10px;'>
-        Edit Profile
-      </button>
-      <button mat-raised-button color='basic' (click)='deleteProfile()' style='margin-right: 10px;'>
-        Delete Profile
-      </button>
-    </mat-card-content>
-  </mat-card>
+<app-navigation></app-navigation>
+<div *ngIf="user">
+  <h1 style='margin-left: 10px'>Hi, {{ user.Username }}</h1>
+  <div style='display: flex; margin: 10px;'>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Your Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h3><b>Username: </b>{{ user.Username }}</h3>
+        <h3><b>Password: </b> ******** </h3>
+        <h3><b>Email: </b>{{ user.Email }}</h3>
+        <h3><b>Birthday: </b>{{ user.Birthday | date : 'mediumDate' }}</h3>
+        <br>
+        <button mat-raised-button color='accent' (click)='openEditProfile()' style='margin-right: 10px;'>
+          Edit Profile
+        </button>
+        <button mat-raised-button color='basic' (click)='deleteProfile()' style='margin-right: 10px;'>
+          Delete Profile
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
 
 <div style="display: flex;">
@@ -40,6 +43,10 @@
       <button mat-stroked-button color="accent" (click)='openSynopsis(favorite.Title, favorite.Description)'
         style='margin-right: 10px;'>
         Synopsis
+      </button>
+      <button mat-stroked-button color="accent" (click)='deleteFavorites(favorite._id, favorite.Title)'
+        style='margin-right: 10px;'>
+        Delete
       </button>
     </mat-card-actions>
   </mat-card>
