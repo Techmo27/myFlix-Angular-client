@@ -10,13 +10,20 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class WelcomePageComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
+  /**
+   * Opening a dialog
+   * @return user registration form
+   */
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
       width: '280px'
     });
   }
+  /**
+   * Opening a dialog
+   * @returns user login form
+   */
   openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
       width: '280px'

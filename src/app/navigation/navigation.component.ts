@@ -21,14 +21,21 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Opening profile page
+   */
   routeProfile(): void {
     this.router.navigate(['profile']);
   }
-
+  /**
+   * Opening movies page
+   */
   routeMovies(): void {
     this.router.navigate(['movies']);
   }
-
+  /**
+   * Logging out user
+   */
   logout(): void {
     localStorage.clear();
     this.router.navigate(['welcome']).then(() => {

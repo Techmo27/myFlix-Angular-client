@@ -27,7 +27,9 @@ export class EditProfileFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // This is the function responsible for sending the form inputs to the backend
+  /**
+   * Calling edit user api endpoint to update user data
+   */
   editProfile(): void {
     this.fetchApiData.editUserProfile(this.userData).subscribe((result) => {
       // Logic for a successful user update goes here!

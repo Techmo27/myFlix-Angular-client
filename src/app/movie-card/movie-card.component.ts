@@ -30,6 +30,9 @@ export class MovieCardComponent {
 
   }
 
+  /**
+   * Calling movies api endpoint
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -38,6 +41,11 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Opening genre dialog
+   * @param name 
+   * @param description 
+   */
   openGenre(name: string, description: string): void {
     this.dialog.open(GenreComponent, {
       data: {
@@ -48,6 +56,12 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Opening director dialog
+   * @param name 
+   * @param bio 
+   * @param birth 
+   */
   openDirector(name: string, bio: string, birth: string): void {
     this.dialog.open(DirectorComponent, {
       data: {
@@ -59,6 +73,11 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Opening synopsis dialog
+   * @param title 
+   * @param description 
+   */
   openSynopsis(title: string, description: string): void {
     this.dialog.open(SynopsisComponent, {
       data: {
@@ -69,9 +88,14 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Calling add favorites api endoint
+   * @param movieID 
+   * @param title 
+   */
   addFavorites(movieID: string, title: string): void {
-    console.log({movieID})
-    console.log({title})
+    console.log({ movieID })
+    console.log({ title })
     this.fetchApiData.addFavoriteMovies(movieID).subscribe((result: any) => {
       this.snackBar.open('The movie was successfully added to your favorites.', 'OK', {
         duration: 2000,

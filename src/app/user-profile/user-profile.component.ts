@@ -57,7 +57,9 @@ export class UserProfileComponent implements OnInit {
     this.getMovies();
   }
 
-
+  /**
+   * Getting user data & favorites by calling api endpoint
+   */
   getUser(): void {
     this.fetchApiData.getUserProfile().subscribe((result: any) => {
       this.user = result;
@@ -66,6 +68,12 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * Getting users favorites
+   * @param movies 
+   * @param userFavoriteMovies 
+   * @returns array of favorites
+   */
   getFavorites(movies: Movies[], userFavoriteMovies: string[]) {
     if (movies.length === 0 || userFavoriteMovies.length === 0) {
       return []
@@ -73,7 +81,10 @@ export class UserProfileComponent implements OnInit {
 
     return movies.filter(movie => userFavoriteMovies.findIndex(m => m === movie._id) !== -1)
   }
-
+  /**
+   * Calling movies api endpoint
+   * @returns array of movies
+   */
   getMovies() {
     this.fetchApiData.getAllMovies().subscribe((resp: Movies[]) => {
       this.movies = resp
@@ -82,12 +93,20 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * Opening edit profile dialog
+   * @returns edit profile form
+   */
   openEditProfile(): void {
     this.dialog.open(EditProfileFormComponent, {
       width: '450px'
     });
   }
 
+  /**
+   * Calling delete profile api endpoint
+   * @returns delete notice
+   */
   deleteProfile(): void {
     this.fetchApiData.deleteUserProfile().subscribe(() => {
       this.snackBar.open('Your profile was deleted', 'OK', {
@@ -100,6 +119,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * Calling delete movies api endpoint
+   * @param movieID 
+   * @param title 
+   */
   deleteFavorites(movieID: string, title: string): void {
     this.fetchApiData.deleteFavoriteMovies(movieID).subscribe((result: any) => {
       this.snackBar.open(
@@ -113,6 +137,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * Opening genre dialog
+   * @param name 
+   * @param description 
+   */
   openGenre(name: string, description: string): void {
     this.dialog.open(GenreComponent, {
       data: {
@@ -123,6 +152,12 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * Opening director dialog
+   * @param name 
+   * @param bio 
+   * @param birth 
+   */
   openDirector(name: string, bio: string, birth: string): void {
     this.dialog.open(DirectorComponent, {
       data: {
@@ -134,6 +169,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * Opening movie description dialog
+   * @param title 
+   * @param description 
+   */
   openSynopsis(title: string, description: string): void {
     this.dialog.open(SynopsisComponent, {
       data: {
